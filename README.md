@@ -36,10 +36,9 @@ If your CouchDB instance uses a `10.0.2.15` IP address you could start a contain
 
 ```
 docker run \
--it \
---rm=true \
---name="preferences-server" \
+-d \
 -p 8082:8082 \
+--name="preferences_server" \
 -e COUCHDB_HOST_ADDRESS=10.0.2.15 \
 -e NODE_ENV=preferencesServer.production \
 -e PRIME_DB=yes \
