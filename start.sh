@@ -8,17 +8,17 @@ fi
 # Modify the following line in the Preferences Server's config to point to a
 # real CouchDB instance:
 # https://github.com/GPII/universal/blob/ec89640347d0977f3d4642cdd5b91b65896c482f/gpii/node_modules/rawPreferencesServer/configs/production.json#L14
-sed -e "s|^ *\"rawPreferencesSourceUrl\": .*$|\"rawPreferencesSourceUrl\": \"http://${COUCHDB_HOST_ADDRESS}:5984/user/%userToken\"|" -i /opt/universal/gpii/node_modules/rawPreferencesServer/configs/production.json
+sed -e "s|^ *\"rawPreferencesSourceUrl\": .*$|\"rawPreferencesSourceUrl\": \"http://${COUCHDB_HOST_ADDRESS}:5984/preferences/%userToken\"|" -i /opt/universal/gpii/node_modules/rawPreferencesServer/configs/production.json
 
 # Test preferences stored in the GPII Universal repository need to be modified
 # before they can be uploaded to CouchDB
 if [ -n "$PRIME_DB" ]; then
     mkdir /tmp/modified_preferences
     /usr/local/bin/modify_preferences.sh /opt/universal/testData/preferences /tmp/modified_preferences
-    curl -X PUT http://${COUCHDB_HOST_ADDRESS}:5984/user
+    curl -X PUT http://${COUCHDB_HOST_ADDRESS}:5984/preferences
     npm -g install kanso
     for preference in /tmp/modified_preferences/*.json; do
-        kanso upload $preference http://${COUCHDB_HOST_ADDRESS}:5984/user;
+        kanso upload $preference http://${COUCHDB_HOST_ADDRESS}:5984/preferences;
     done
     rm -rf /tmp/modified_preferences
     npm -g uninstall kanso
