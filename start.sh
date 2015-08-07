@@ -17,9 +17,10 @@ if [ -n "$PRIME_DB" ]; then
     /usr/local/bin/modify_preferences.sh /opt/universal/testData/preferences /tmp/modified_preferences
     curl -X PUT http://${COUCHDB_HOST_ADDRESS}:5984/preferences
     npm -g install kanso
-    for preference in /tmp/modified_preferences/*.json; do
-        kanso upload $preference http://${COUCHDB_HOST_ADDRESS}:5984/preferences;
-    done
+    kanso upload /tmp/modified_preferences/carla.json http://${COUCHDB_HOST_ADDRESS}:5984/preferences;
+    # for preference in /tmp/modified_preferences/*.json; do
+    #    kanso upload $preference http://${COUCHDB_HOST_ADDRESS}:5984/preferences;
+    # done
     rm -rf /tmp/modified_preferences
     npm -g uninstall kanso
 fi
