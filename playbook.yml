@@ -1,0 +1,7 @@
+---
+- hosts: local
+  connection: local
+  roles:
+  - ansible-facts
+  - ansible-nodejs
+  - ansible-gpii-preferences-server
