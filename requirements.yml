@@ -1,4 +1,5 @@
 - src: https://github.com/idi-ops/ansible-facts
-- src: https://github.com/idi-ops/ansible-nodejs
+# - src: https://github.com/idi-ops/ansible-nodejs
+- src: https://github.com/waharnum/ansible-nodejs-1
 - src: https://github.com/idi-ops/ansible-couchdb.git
 - src: https://github.com/waharnum/ansible-gpii-preferences-server

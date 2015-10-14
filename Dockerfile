@@ -1,13 +1,8 @@
-FROM gtirloni/universal
+FROM aharnum/universal
 
-RUN yum install sudo -y
+RUN mkdir /opt/ansible
 
-# Try to disable requiretty in /etc/sudoers, found at https://gist.github.com/petems/367f8119bbff011bf83e
-RUN echo "Removing requiretty" \
-    && sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers \
-    && echo "Complete!"
-
-RUN yum install ansible -y
+WORKDIR /opt/ansible
 
 COPY requirements.yml requirements.yml
 
