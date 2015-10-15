@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: gpii-preferences-server
+    labels:
+      app: gpii-preferences-server
+spec:
+    restartPolicy: Never
+    containers:
+    - name: pref-server
+      image: aharnum/preferences-server
+      env:
+          - name: NODE_ENV
+            value: "preferencesServer.production"
+          - name: COUCHDB_HOST_ADDRESS
+            value: "couchdbsvc:5984"
+          - name: PRIME_DB
+            value: "true"
+      ports:
+          - containerPort: 8082
