@@ -8,8 +8,6 @@ COPY requirements.yml requirements.yml
 
 COPY playbook-docker-build.yml playbook-docker-build.yml
 
-COPY playbook-docker-run.yml playbook-docker-run.yml
-
 RUN ansible-galaxy install -r requirements.yml
 
 RUN echo '[local]' > /etc/ansible/hosts \
@@ -18,6 +16,8 @@ RUN echo '[local]' > /etc/ansible/hosts \
     && echo 'transport = local' >> .ansible.cfg
 
 RUN ansible-playbook playbook-docker-build.yml
+
+COPY playbook-docker-run.yml playbook-docker-run.yml
 
 COPY run.sh /usr/local/bin/run.sh
 
