@@ -1,0 +1,9 @@
+---
+- hosts: local
+  connection: local
+  vars_files:
+      - runtime_vars.yml
+  roles:
+      - ansible-facts
+      - ansible-nodejs-1
+      - ansible-gpii-preferences-server

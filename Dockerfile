@@ -6,7 +6,9 @@ WORKDIR /opt/ansible
 
 COPY requirements.yml requirements.yml
 
-COPY playbook.yml playbook.yml
+COPY playbook-docker-build.yml playbook-docker-build.yml
+
+COPY playbook-docker-run.yml playbook-docker-run.yml
 
 RUN ansible-galaxy install -r requirements.yml
 
@@ -15,14 +17,12 @@ RUN echo '[local]' > /etc/ansible/hosts \
     && echo '[defaults]' > .ansible.cfg \
     && echo 'transport = local' >> .ansible.cfg
 
-RUN ansible-playbook playbook.yml
+RUN ansible-playbook playbook-docker-build.yml
 
-# COPY modify_preferences.sh /usr/local/bin/modify_preferences.sh
-# COPY start.sh /usr/local/bin/start.sh
+EXPOSE 8081
 
-# RUN chmod 755 /usr/local/bin/modify_preferences.sh
-# RUN chmod 755 /usr/local/bin/start.sh
+COPY run.sh /usr/local/bin/run.sh
 
-# EXPOSE 8082
+RUN chmod 755 /usr/local/bin/run.sh
 
-# ENTRYPOINT ["/usr/local/bin/start.sh"]
+ENTRYPOINT ["/usr/local/bin/run.sh"]
