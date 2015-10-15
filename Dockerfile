@@ -19,8 +19,6 @@ RUN echo '[local]' > /etc/ansible/hosts \
 
 RUN ansible-playbook playbook-docker-build.yml
 
-EXPOSE 8081
-
 COPY run.sh /usr/local/bin/run.sh
 
 RUN chmod 755 /usr/local/bin/run.sh
