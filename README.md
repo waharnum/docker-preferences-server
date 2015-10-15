@@ -23,3 +23,8 @@ Building Docker containers using our Ansible roles, still in development.
         - `/preferences/carla` endpoint returns:
             - `{"isError":true,"message":"not_found: no_db_file","statusCode":500}`
     - this is probably something very simple that I don't yet know to solve due to lack of gpii familiarity
+
+## How it works
+- `playbook-docker-build.yml` - playbook for building the container image
+- `playbook-docker-run.yml` - playbook for runtime deployment steps (reconfiguring couchdb address, application environment and priming the DB), runs when the container is run - uses dynamically created `runtime_vars.yml` to pass environment variables from `docker run` to Ansible playbook
+- `run.sh` - creates `runtime_vars.yml` based on environment variables from `docker run`, runs `playbook-docker-run.yml` for runtime deployment steps, and starts the preferencesServer using supervisord
