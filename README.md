@@ -14,7 +14,7 @@ Building Docker containers using our Ansible roles, still in development.
 - running requires a couchdb instance accessible to the container
 - fully containerized example:
     - `docker run -d -p 5984:5984 --name couchdb klaemo/couchdb`
-    - `docker run --name prefserver -d -p 8081:8081 -l couchdb -e NODE_ENV=development.all.local -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true -t aharnum/preferences-server`
+    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true -t aharnum/preferences-server`
 
 ## How it works
 - `playbook-docker-build.yml` - playbook for building the container image
