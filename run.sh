@@ -17,4 +17,4 @@ EOF
 
 # Run playbook-docker-run for runtime deployment steps, then start the preferences server with supervisord (in foreground)
 
-ansible-playbook playbook-docker-run.yml --tags "deploy" && supervisord -n -c /etc/supervisord.conf
+ansible-playbook run.yml --tags "deploy" && supervisord -n -c /etc/supervisord.conf

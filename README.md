@@ -5,16 +5,16 @@ Building Docker containers using our Ansible roles, still in development.
 ## Building
 
 - build intermediary image (installs Ansible, other dependencies for Ansible to work when run internally):
-    - `docker build -t aharnum/universal -f Dockerfile.aharnum.universal .`
+    - `docker build -t inclusivedesign/centos-cm -f Dockerfile.inclusivedesign.centos-cm .`
 - build Ansible-provisioned image:
-    - `docker build -t aharnum/universal .`
+    - `docker build -t inclusivedesign/preferences-server .`
 
 ## Running
 
 - running requires a couchdb instance accessible to the container
 - fully containerized example:
     - `docker run -d -p 5984:5984 --name couchdb klaemo/couchdb`
-    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true -t aharnum/preferences-server`
+    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true -t inclusivedesign/preferences-server`
 
 ## How it works
 - `playbook-docker-build.yml` - playbook for building the container image

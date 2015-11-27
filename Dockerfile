@@ -1,23 +1,12 @@
-FROM aharnum/universal
+FROM inclusivedesign/universal
 
-RUN mkdir /opt/ansible
+WORKDIR /etc/ansible/playbooks
 
-WORKDIR /opt/ansible
-
-COPY requirements.yml requirements.yml
-
-COPY playbook-docker-build.yml playbook-docker-build.yml
+COPY ansible/* /etc/ansible/playbooks/
 
 RUN ansible-galaxy install -r requirements.yml
 
-RUN echo '[local]' > /etc/ansible/hosts \
-    && echo 'localhost' >> /etc/ansible/hosts \
-    && echo '[defaults]' > .ansible.cfg \
-    && echo 'transport = local' >> .ansible.cfg
-
-RUN ansible-playbook playbook-docker-build.yml
-
-COPY playbook-docker-run.yml playbook-docker-run.yml
+RUN ansible-playbook build.yml --tags "deploy"
 
 COPY run.sh /usr/local/bin/run.sh
 
