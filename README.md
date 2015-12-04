@@ -5,14 +5,14 @@ Builds a GPII Preference Server Docker container image. The image is built using
 ## Building
 
 - build Ansible-provisioned image:
-    - `docker build -t inclusivedesign/preferences-server .`
+    - `docker build -t gpii/preferences-server .`
 
 ## Running
 
 - running requires a couchdb instance accessible to the container
 - fully containerized example:
     - `docker run -d -p 5984:5984 --name couchdb klaemo/couchdb`
-    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true -t inclusivedesign/preferences-server`
+    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true -t gpii/preferences-server`
 
 ## How it works
 - `build.yml` - playbook for building the container image
