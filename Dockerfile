@@ -1,4 +1,4 @@
-FROM inclusivedesign/universal
+FROM gpii/universal
 
 WORKDIR /etc/ansible/playbooks
 
@@ -8,8 +8,8 @@ RUN ansible-galaxy install -r requirements.yml
 
 RUN ansible-playbook build.yml --tags "deploy"
 
-COPY run.sh /usr/local/bin/run.sh
+COPY start.sh /usr/local/bin/start.sh
 
-RUN chmod 755 /usr/local/bin/run.sh
+RUN chmod 755 /usr/local/bin/start.sh
 
-ENTRYPOINT ["/usr/local/bin/run.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]

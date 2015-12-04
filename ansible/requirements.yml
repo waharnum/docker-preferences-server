@@ -1,5 +1,5 @@
 # Already present from inclusivedesign/nodejs container
 # - src: https://github.com/idi-ops/ansible-facts
 # - src: https://github.com/idi-ops/ansible-nodejs
-- src: https://github.com/waharnum/ansible-gpii-preferences-server
+- src: https://github.com/gpii-ops/ansible-gpii-preferences-server
   name: gpii-preferences-server
