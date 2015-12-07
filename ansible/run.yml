@@ -6,4 +6,4 @@
   roles:
       - facts
       - nodejs
-      - gpii-preferences-server
+      - preferences-server
