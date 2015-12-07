@@ -2,7 +2,7 @@
 
 # Create an Ansible variables file for playbook-docker-run based on environment variables passed to the container
 
-cat > runtime_vars.yml<<EOF
+cat > run_vars.yml<<EOF
 ---
 preferences_server_couchdb_host_address: $COUCHDB_HOST_ADDRESS
 preferences_server_environment: $NODE_ENV

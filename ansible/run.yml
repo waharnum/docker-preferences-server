@@ -2,7 +2,7 @@
 - hosts: local
   connection: local
   vars_files:
-      - runtime_vars.yml
+      - run_vars.yml
   roles:
       - facts
       - nodejs
