@@ -16,5 +16,5 @@ Builds a GPII Preference Server Docker container image. The image is built using
 
 ## How it works
 - `build.yml` - playbook for building the container image
-- `run.yml` - playbook for runtime deployment steps (reconfiguring couchdb address, application environment and priming the DB), runs when the container is run - uses dynamically created `run_vars.yml` to pass environment variables from `docker run` to Ansible playbook
-- `run.sh` - creates `run_vars.yml` based on environment variables from `docker run`, runs `run.yml` for runtime deployment steps, and starts the preferencesServer using supervisord
+- `run.yml` - playbook for runtime deployment steps (reconfiguring couchdb address, application environment and priming the DB), runs when the container is run - uses dynamically created `run-vars.yml` to pass environment variables from `docker run` to Ansible playbook
+- `run.sh` - creates `run-vars.yml` based on environment variables from `docker run`, runs `run.yml` for runtime deployment steps, and starts the preferencesServer using supervisord
