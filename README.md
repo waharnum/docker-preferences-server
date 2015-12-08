@@ -10,11 +10,11 @@ Builds a GPII Preference Server Docker container image. The image is built using
 ## Running
 
 - running requires a couchdb instance accessible to the container
-- fully containerized example:
+- fully containerized example, assuming the DB needs to be primed:
     - `docker run -d -p 5984:5984 --name couchdb klaemo/couchdb`
-    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true -t gpii/preferences-server`
+    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true gpii/preferences-server`
 
 ## How it works
 - `build.yml` - playbook for building the container image
-- `run.yml` - playbook for runtime deployment steps (reconfiguring couchdb address, application environment and priming the DB), runs when the container is run - uses dynamically created `run-vars.yml` to pass environment variables from `docker run` to Ansible playbook
+- `run.yml` - playbook for runtime deployment steps (reconfiguring couchdb address, application environment and priming the DB), runs when the container is run - uses dynamically created `run-vars.yml` to pass environment variables from `docker run` to Ansible playbook, tests the container is connected properly to couchdb, then starts the application as a foreground process using supervisord
 - `run.sh` - creates `run-vars.yml` based on environment variables from `docker run`, runs `run.yml` for runtime deployment steps, and starts the preferencesServer using supervisord
