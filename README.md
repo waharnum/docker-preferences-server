@@ -1,6 +1,6 @@
 ## GPII Preferences Server Dockerfile - Ansible version
 
-Builds a GPII Preference Server Docker container image. The image is built using the [Ansible role](https://github.com/gpii-ops/ansible-gpii-preferences-server).
+Builds a GPII Preference Server Docker container image. The image is built using the [Ansible role](https://github.com/gpii-ops/ansible-preferences-server).
 
 ## Building
 
