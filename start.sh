@@ -16,8 +16,10 @@ nodejs_app_test_string: registry.gpii.net
 
 EOF
 
-ansible-playbook run.yml --tags "deploy" --extra-vars "@run-vars.yml" && \
-ansible-playbook run.yml --tags "test" --extra-vars "@run-vars.yml" && \
-# kill the supervisord process started by the test so we can restart it in the foreground
-pkill supervisord && \
-supervisord -n -c /etc/supervisord.conf
+if [ "$CONTAINER_TEST" = true ]; then
+    ansible-playbook run.yml --tags "deploy" && \
+    ansible-playbook run.yml --tags "test"
+else
+    ansible-playbook run.yml --tags "deploy" && \
+    supervisord -n -c /etc/supervisord.conf
+fi

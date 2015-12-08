@@ -7,11 +7,19 @@ Builds a GPII Preference Server Docker container image. The image is built using
 - build Ansible-provisioned image:
     - `docker build -t gpii/preferences-server .`
 
+## Testing
+
+The container can be tested by setting the *CONTAINER_TEST* environment variable to *true*:
+- `docker run -d --name couchdbtest klaemo/couchdb`
+- `docker run --rm -it --name prefservertest -l couchdbtest -e NODE_ENV=preferencesServer.production -e CONTAINER_TEST=true -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS="couchdbtest:5984" -e PRIME_DB=true gpii/preferences-server`
+
+This is expected to be run after launching a couchdb container or otherwise as part of a smoke integration test before pushing a rebuilt image. The container will exit after the test and the exit code as a result of the run command can be used for further actions.
+
 ## Running
 
 - running requires a couchdb instance accessible to the container
 - fully containerized example, assuming the DB needs to be primed:
-    - `docker run -d -p 5984:5984 --name couchdb klaemo/couchdb`
+    - `docker run -d --name couchdb klaemo/couchdb`
     - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 -e PRIME_DB=true gpii/preferences-server`
 
 ## How it works
