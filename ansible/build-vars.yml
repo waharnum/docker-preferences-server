@@ -1,0 +1,3 @@
+# See https://github.com/idi-ops/ansible-nodejs/blob/master/defaults/main.yml and
+# https://github.com/gpii-ops/ansible-preferences-server/blob/master/defaults/main.yml
+# for what can be configured in a build
