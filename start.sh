@@ -6,7 +6,6 @@ cat > run-vars.yml<<EOF
 ---
 preferences_server_couchdb_host_address: $COUCHDB_HOST_ADDRESS
 preferences_server_environment: $NODE_ENV
-preferences_server_prime_db: $PRIME_DB
 
 nodejs_app_host_address: 127.0.0.1
 nodejs_app_tcp_port: 8082
