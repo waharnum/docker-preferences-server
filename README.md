@@ -19,6 +19,7 @@ A separate sidecar container exists for initializing the dataset.
 
 The container can be tested by setting the *CONTAINER_TEST* environment variable to *true*:
 - `docker run -d --name couchdb klaemo/couchdb`
+- `docker run --rm -l couchdb -e COUCHDB_HOST_ADDRESS=couchdb:5984 gpii/preferences-server-data-loader`
 - `docker run --rm -it --name prefservertest -l couchdb -e NODE_ENV=preferencesServer.production -e CONTAINER_TEST=true -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS="couchdb:5984" gpii/preferences-server`
 
 This is expected to be run after launching a couchdb container & priming it with test data (or similar) as part of a smoke integration test before pushing a rebuilt image. The container will exit after the test and the exit code as a result of the run command can be used for further actions.
