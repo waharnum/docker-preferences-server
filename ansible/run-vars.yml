@@ -9,3 +9,6 @@ nodejs_app_tcp_port: 8082
 nodejs_app_test_http_endpoint: /preferences/carla
 nodejs_app_test_http_status_code: 200
 nodejs_app_test_string: registry.gpii.net
+
+# install directory for universal from parent container
+nodejs_app_install_dir: /opt/gpii/node_modules/{{ nodejs_app_name }}

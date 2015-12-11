@@ -1,3 +1,6 @@
 # See https://github.com/idi-ops/ansible-nodejs/blob/master/defaults/main.yml and
 # https://github.com/gpii-ops/ansible-preferences-server/blob/master/defaults/main.yml
 # for what can be configured in a build
+
+nodejs_app_name: universal
+nodejs_app_install_dir: /opt/gpii/node_modules/{{ nodejs_app_name }}
