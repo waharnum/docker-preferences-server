@@ -9,6 +9,12 @@ A separate sidecar container exists for initializing the dataset.
 - build Ansible-provisioned image:
     - `docker build -t gpii/preferences-server .`
 
+## Runtime Environment Variables
+
+- `COUCHDB_HOST_ADDRESS`: host address of the couchdb instance to use. You will typically need to be explicit about this. (default: `localhost:5984`)
+- `NODE_ENV`: specifies the configuration file to be used from https://github.com/GPII/universal/tree/master/gpii/configs when launching (default: `preferencesServer.production`)
+- `CONTAINER_TEST`: whether or not to run the container in test mode, then exit (default: `false`)
+
 ## Testing
 
 The container can be tested by setting the *CONTAINER_TEST* environment variable to *true*:

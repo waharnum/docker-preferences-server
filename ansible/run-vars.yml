@@ -1,8 +1,9 @@
 # Uses environment variables passed to the container on `docker run`
 ---
-preferences_server_couchdb_host_address: "{{ lookup('env', 'COUCHDB_HOST_ADDRESS')}}"
-preferences_server_environment: "{{ lookup('env', 'NODE_ENV')}}"
+preferences_server_couchdb_host_address: "{{ lookup('env', 'COUCHDB_HOST_ADDRESS')  | default('localhost:5984',true) }}"
+preferences_server_environment: "{{ lookup('env', 'NODE_ENV') | default('preferencesServer.production',true) }}"
 
+# self-test configuration for CONTAINER_TEST mode
 nodejs_app_host_address: 127.0.0.1
 nodejs_app_tcp_port: 8082
 nodejs_app_test_http_endpoint: /preferences/carla
