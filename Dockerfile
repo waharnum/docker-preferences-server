@@ -1,9 +1,15 @@
-FROM kaspermarkus/universal
+FROM gpii/universal
 
-COPY modify_preferences.sh /usr/local/bin/modify_preferences.sh
-COPY start.sh /usr/local/bin/start.sh
+WORKDIR /etc/ansible/playbooks
 
-RUN chmod 755 /usr/local/bin/modify_preferences.sh
+COPY provisioning/*.yml /etc/ansible/playbooks/
+
+RUN ansible-galaxy install -r requirements.yml
+
+RUN ansible-playbook build.yml --tags "deploy"
+
+COPY provisioning/start.sh /usr/local/bin/start.sh
+
 RUN chmod 755 /usr/local/bin/start.sh
 
 EXPOSE 8082
