@@ -19,8 +19,8 @@ A separate sidecar container exists for initializing the dataset.
 
 The container can be tested by setting the *CONTAINER_TEST* environment variable to *true*:
 - `docker run -d --name couchdb klaemo/couchdb`
-- `docker run --rm -l couchdb -e CLEAR_INDEX=true -e COUCHDB_HOST_ADDRESS=couchdb:5984 gpii/preferences-server-data-loader`
-- `docker run --rm -it --name prefservertest -l couchdb -e NODE_ENV=preferencesServer.production -e CONTAINER_TEST=true -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS="couchdb:5984" gpii/preferences-server`
+- `docker run --rm --link couchdb -e CLEAR_INDEX=true -e COUCHDB_HOST_ADDRESS=couchdb:5984 gpii/preferences-server-data-loader`
+- `docker run --rm -it --name prefservertest --link couchdb -e NODE_ENV=preferencesServer.production -e CONTAINER_TEST=true -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS="couchdb:5984" gpii/preferences-server`
 
 This is expected to be run after launching a couchdb container & priming it with test data (or similar) as part of a smoke integration test before pushing a rebuilt image. The container will exit after the test and the exit code as a result of the run command can be used for further actions.
 
@@ -29,8 +29,8 @@ This is expected to be run after launching a couchdb container & priming it with
 - running requires a couchdb instance accessible to the container (likely primed with test data)
 - fully containerized example, assuming the DB needs to be primed (using the sidecar container):
     - `docker run -d -p 5984:5984 --name couchdb klaemo/couchdb`
-    - `docker run --rm -l couchdb -e CLEAR_INDEX=true COUCHDB_HOST_ADDRESS=couchdb:5984 gpii/preferences-server-data-loader`
-    - `docker run --name prefserver -d -p 8082:8082 -l couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 gpii/preferences-server`
+    - `docker run --rm --link couchdb -e CLEAR_INDEX=true COUCHDB_HOST_ADDRESS=couchdb:5984 gpii/preferences-server-data-loader`
+    - `docker run --name prefserver -d -p 8082:8082 --link couchdb -e NODE_ENV=preferencesServer.production -e COUCHDB_HOST_ADDRESS=couchdb:5984 gpii/preferences-server`
 
 ## How it works
 - `build.yml` - playbook for building the container image
