@@ -3,6 +3,10 @@
 preferences_server_couchdb_host_address: "{{ lookup('env', 'COUCHDB_HOST_ADDRESS')  | default('localhost:5984',true) }}"
 preferences_server_environment: "{{ lookup('env', 'NODE_ENV') | default('preferencesServer.production',true) }}"
 
+# Although this has been already specified in the GPII/universal, it's needed here for the deploy phase again.
+nodejs_app_name: universal
+nodejs_app_start_script: gpii.js
+
 # self-test configuration for CONTAINER_TEST mode
 nodejs_app_host_address: 127.0.0.1
 nodejs_app_tcp_port: 8082
