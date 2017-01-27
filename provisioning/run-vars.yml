@@ -1,7 +1,7 @@
 # Uses environment variables passed to the container on `docker run`
 ---
 preferences_server_couchdb_host_address: "{{ lookup('env', 'COUCHDB_HOST_ADDRESS')  | default('localhost:5984',true) }}"
-preferences_server_environment: "{{ lookup('env', 'NODE_ENV') | default('preferencesServer.production',true) }}"
+preferences_server_environment: "{{ lookup('env', 'NODE_ENV') | default('gpii.config.docker.preferencesServer.standalone.production',true) }}"
 
 # Although this has been already specified in the GPII/universal, it's needed here for the deploy phase again.
 nodejs_app_name: universal
